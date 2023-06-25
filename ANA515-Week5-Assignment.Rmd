@@ -1,0 +1,39 @@
+---
+title: "ANA 515 Week 5"
+author: Catherine Liao
+date: 2023
+output: 
+  word_document
+---
+
+``` {r, include = FALSE}
+library(readr)
+url <- "https://raw.githubusercontent.com/fivethirtyeight/data/master/avengers/avengers.csv" 
+avengers_data <- read_csv(url)
+```
+
+#Visualization 1
+#This histogram shows the distributions of the number of appearances for characters in the Avengers.
+
+```{r, echo = FALSE, warning = FALSE}
+library(ggplot2)
+appearances <- avengers_data$Appearances
+ggplot(data = avengers_data, aes(x = appearances)) +
+  geom_histogram(binwidth = 500, color = "pink", fill = "white" ) +
+  labs(x = "Number of Appearances", y = "Frequency", title = "Appearances of Avengers")
+```
+
+
+
+
+#Visualization 2
+#This histogram shows the distributions of the Avengers by their genders.
+
+```{r, echo = FALSE, warning = FALSE}
+gender <- table(avengers_data$Gender)
+gender <- as.data.frame(gender)
+ggplot(data = gender, aes(x = Var1, y = Freq)) +
+  geom_bar(stat = "identity", fill = "purple" ) +
+  labs(x = "Genders", y = "Count", title = "Avengers by Gender")
+```
+
